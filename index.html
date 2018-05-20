@@ -316,6 +316,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/20/情人节/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/05/20/情人节/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -369,6 +379,7 @@
 <p>我是一个不爱表达也不善于表达的人，白话的话就是闷骚特质？包括对父母也是如此，因此外漏的爱不达意，内心深处深深的爱着小可爱。</p>
 <h3 id="关于未来"><a href="#关于未来" class="headerlink" title="关于未来"></a>关于未来</h3><p>我以为的爱情，是岁月长久的相伴，不像绚烂在天际的烟火，好看一时，灰迹飘落无声。要坚守，要一些一生的勇气。浪漫终有一天死去，生活总归于平淡，当我总有一天不再是夕阳武士，不再当齐天大圣，什么金甲圣衣，七彩祥云，都不如老老实实地剥个橘子这样真实。</p>
 <p>有时也会幻想未来某天和小可爱结婚了，手牵手一起看绯樱漫天，一起看山梅遍野，一起看满园春色，一起漫步黄昏。但是未来很遥远，路漫漫，望小可爱能和我一样，多一些坚守，多一些一生的勇气，我不离，你不弃！！</p>
+<p>今天520，在这个特殊的日子里说一声“祝我们情人节快乐”！！！</p>
 <blockquote>
 <p>记得早先少年时<br>大家诚诚恳恳<br>说一句 是一句<br>清早上 火车站<br>长街黑暗无行人<br>卖豆浆的小店冒着热气<br>从前的日色变得慢<br>车，马，邮件都慢<br>一生只够爱一个人<br>从前的锁也好看<br>钥匙精美有样子<br>你锁了 人家就懂了</p>
 </blockquote>
@@ -524,8 +535,8 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Liz</span>
 
@@ -674,6 +685,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'kvOvgK7Y3V2dRhhlpST3UIbj-gzGzoHsz',
+        appKey: '6A4IMi3lTXQe7oKTpVnD5VGa',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

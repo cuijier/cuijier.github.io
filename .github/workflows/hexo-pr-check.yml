@@ -1,0 +1,52 @@
+name: Verify Hexo recovery pull request
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Restore legacy image assets
+        run: |
+          mkdir -p source/images
+          if [ -d images ]; then cp -a images/. source/images/; fi
+
+      - name: Install NexT Muse theme
+        run: |
+          git clone --depth 1 --branch v5.1.4 https://github.com/iissnan/hexo-theme-next.git themes/next
+
+      - name: Build site
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      - name: Verify routes and assets
+        run: |
+          test -f public/index.html
+          test -f "public/2018/05/20/情人节/index.html"
+          test -f "public/2018/10/08/留和路288号/index.html"
+          test -f public/archives/index.html
+          test -f public/categories/index.html
+          test -f public/tags/index.html
+          test -f public/CNAME
+          grep -qx 'cuijier.github.io' public/CNAME
+          test -f public/css/main.css

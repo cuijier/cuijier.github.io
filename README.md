@@ -19,7 +19,7 @@ npm install
 git clone --depth 1 --branch v5.1.4 https://github.com/iissnan/hexo-theme-next.git themes/next
 mkdir -p source/images
 cp -a images/. source/images/
-npx hexo server
+npm run build (本地生成静态文件；预览服务器后续补齐)
 ```
 
 ## Build

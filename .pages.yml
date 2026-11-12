@@ -1,0 +1,68 @@
+media:
+  - name: post_images
+    label: 文章图片
+    input: source/images/posts
+    output: /images/posts
+    categories: [image]
+    extensions: [jpg, jpeg, png, gif, webp, svg]
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: source/_posts
+    filename:
+      template: "{year}-{month}-{day}-{title}.md"
+      field: create
+    view:
+      fields: [title, date, categories]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布时间
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ss"
+      - name: permalink
+        label: 固定链接
+        type: string
+        description: 保留文章原有 URL；新文章可留空使用 Hexo 默认链接
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: body
+        label: 正文
+        type: rich-text
+        options:
+          format: markdown
+          media: post_images
+          switcher: true
+    operations:
+      create: true
+      rename: true
+      delete: true
+
+settings:
+  content: true
+  commit:
+    identity: user
+    templates:
+      create: "content(posts): 新增 {filename}"
+      update: "content(posts): 更新 {filename}"
+      delete: "content(posts): 删除 {filename}"
+      rename: "content(posts): 重命名 {oldFilename} -> {newFilename}"

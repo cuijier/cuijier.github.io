@@ -16,10 +16,11 @@ Restored posts are in `source/_posts/`. Their original publication dates, catego
 
 ```bash
 npm install
+npm install -g hexo-cli@4.3.2
 git clone --depth 1 --branch v5.1.4 https://github.com/iissnan/hexo-theme-next.git themes/next
 mkdir -p source/images
 cp -a images/. source/images/
-npm run build (本地生成静态文件；预览服务器后续补齐)
+hexo clean && hexo generate
 ```
 
 ## Build

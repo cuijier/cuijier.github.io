@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -49,3 +48,7 @@ jobs:
           test -f "public/2018/05/20/情人节/index.html"
           test -f "public/2018/10/08/留和路288号/index.html"
           test -f public/CNAME
+          grep -qx 'cuijier.github.io' public/CNAME
+          test -f public/archives/index.html
+          test -f public/categories/index.html
+          test -f public/tags/index.html

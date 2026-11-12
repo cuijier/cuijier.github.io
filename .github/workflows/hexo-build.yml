@@ -1,0 +1,51 @@
+name: Build restored Hexo site
+
+on:
+  push:
+    branches:
+      - restore/hexo-source-2026-11-12
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout recovery branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Restore legacy image assets
+        run: |
+          mkdir -p source/images
+          if [ -d images ]; then cp -a images/. source/images/; fi
+
+      - name: Install matching NexT theme
+        run: |
+          git clone --depth 1 --branch v5.1.4 https://github.com/iissnan/hexo-theme-next.git themes/next
+
+      - name: Generate static site
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      - name: Verify key routes
+        run: |
+          test -f public/index.html
+          test -f "public/2018/05/20/情人节/index.html"
+          test -f "public/2018/10/08/留和路288号/index.html"
+          test -f public/CNAME

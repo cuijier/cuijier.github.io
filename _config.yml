@@ -1,1 +1,47 @@
-theme: jekyll-theme-cayman
+# Hexo site configuration restored from the published static site.
+title: Love you
+subtitle: ''
+description: ''
+keywords:
+  - Liz
+  - cuijier
+author: Liz
+language: zh-Hans
+timezone: Asia/Shanghai
+
+url: https://cuijier.github.io
+root: /
+permalink: :year/:month/:day/:title/
+per_page: 10
+archive_generator:
+  per_page: 0
+category_generator:
+  per_page: 0
+tag_generator:
+  per_page: 0
+
+theme: next
+theme_config:
+  scheme: Muse
+  menu:
+    home: / || home
+    tags: /tags/ || tags
+    categories: /categories/ || th
+    archives: /archives/ || archive
+  sidebar:
+    position: left
+    display: post
+  motion:
+    enable: true
+  fancybox: true
+  avatar: /images/avatar.gif
+  social:
+    GitHub: https://github.com/cuijier || github
+
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+public_dir: public

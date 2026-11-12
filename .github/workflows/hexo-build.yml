@@ -41,8 +41,9 @@ jobs:
 
       - name: Build site
         run: |
-          npx hexo clean
-          npx hexo generate
+          ./node_modules/.bin/hexo version
+          ./node_modules/.bin/hexo clean
+          ./node_modules/.bin/hexo generate
 
       - name: Verify legacy routes and assets
         run: |

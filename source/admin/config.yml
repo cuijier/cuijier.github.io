@@ -1,8 +1,8 @@
 # Decap CMS configuration for cuijier.github.io
-# Create the site in Decap Turbo, then replace this value with its Site ID.
+# Decap Turbo Site ID
 backend:
   name: turbo-github
-  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  turbo_site_id: 7a7e7cee-c52c-448e-afd1-5c95db80bc81
   branch: master
 
 locale: zh_Hans

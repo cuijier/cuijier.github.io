@@ -4,9 +4,7 @@
   "private": true,
   "description": "Restored Hexo source for cuijier.github.io",
   "scripts": {
-    "clean": "node -e \"require('./scripts/build')\"",
-    "build": "node scripts/build.js",
-    "server": "hexo server"
+    "build": "node scripts/build.js"
   },
   "dependencies": {
     "hexo": "7.3.0",

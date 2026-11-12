@@ -20,6 +20,10 @@ category_generator:
 tag_generator:
   per_page: 0
 
+# Keep Decap's YAML config as YAML; otherwise Hexo converts it to admin/config.json.
+skip_render:
+  - 'admin/**/*'
+
 theme: next
 theme_config:
   scheme: Muse

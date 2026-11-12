@@ -1,0 +1,77 @@
+# Decap CMS configuration for cuijier.github.io
+# After connecting this repository in Decap Turbo, replace the value below
+# with the Site ID shown on the site's Overview page.
+backend:
+  name: turbo-github
+  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  branch: master
+
+locale: zh_Hans
+
+media_folder: "source/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "博客文章"
+    label_singular: "文章"
+    folder: "source/_posts"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} · {{date}}"
+    sortable_fields: ["date", "title"]
+    view_filters:
+      - label: "已发布"
+        field: "published"
+        pattern: true
+      - label: "草稿"
+        field: "published"
+        pattern: false
+    fields:
+      - label: "标题"
+        name: "title"
+        widget: "string"
+        required: true
+      - label: "发布日期"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD HH:mm:ss"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        required: true
+      - label: "固定链接（可选）"
+        name: "permalink"
+        widget: "string"
+        required: false
+        hint: "留空则由 Hexo 根据日期和标题自动生成；修改已有文章时建议保留原值。"
+      - label: "分类"
+        name: "categories"
+        widget: "list"
+        required: false
+        field:
+          label: "分类名称"
+          name: "category"
+          widget: "string"
+      - label: "标签"
+        name: "tags"
+        widget: "list"
+        required: false
+        field:
+          label: "标签名称"
+          name: "tag"
+          widget: "string"
+      - label: "发布文章"
+        name: "published"
+        widget: "boolean"
+        default: true
+        required: false
+        hint: "关闭后文章不会被 Hexo 发布。"
+      - label: "正文"
+        name: "body"
+        widget: "markdown"
+        required: true

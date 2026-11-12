@@ -23,7 +23,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: |
+          npm install --no-audit --no-fund
+          npm install --global hexo-cli@4.3.2
 
       - name: Restore legacy image assets
         run: |

@@ -1,24 +1,26 @@
-name: Build restored Hexo site
+name: Build and deploy Hexo site
 
 on:
-  push:
-    branches:
-      - restore/hexo-source-2026-11-12
   pull_request:
+    branches:
+      - master
+  push:
     branches:
       - master
 
 permissions:
   contents: read
 
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout recovery branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -26,29 +28,56 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund
 
       - name: Restore legacy image assets
         run: |
           mkdir -p source/images
           if [ -d images ]; then cp -a images/. source/images/; fi
 
-      - name: Install matching NexT theme
+      - name: Install NexT Muse theme
         run: |
           git clone --depth 1 --branch v5.1.4 https://github.com/iissnan/hexo-theme-next.git themes/next
 
-      - name: Generate static site
+      - name: Build site
         run: |
           npx hexo clean
           npx hexo generate
 
-      - name: Verify key routes
+      - name: Verify legacy routes and assets
         run: |
           test -f public/index.html
           test -f "public/2018/05/20/情人节/index.html"
           test -f "public/2018/10/08/留和路288号/index.html"
-          test -f public/CNAME
-          grep -qx 'cuijier.github.io' public/CNAME
           test -f public/archives/index.html
           test -f public/categories/index.html
           test -f public/tags/index.html
+          test -f public/CNAME
+          grep -qx 'cuijier.github.io' public/CNAME
+          test -f public/css/main.css
+
+      - name: Configure GitHub Pages
+        if: github.event_name == 'push'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./public
+
+  deploy:
+    if: github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

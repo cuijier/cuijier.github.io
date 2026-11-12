@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Restored Hexo source for cuijier.github.io",
-  "scripts": {
-    "build": "hexo clean && hexo generate",
-    "clean": "hexo clean",
-    "server": "hexo server"
-  },
+  "scripts": {},
   "dependencies": {
     "hexo": "7.3.0",
     "hexo-generator-archive": "2.0.0",

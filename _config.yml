@@ -34,8 +34,7 @@ theme_config:
   motion:
     enable: true
   fancybox: true
-  avatar:
-    url: /images/avatar.gif
+  avatar: /images/avatar.gif
   social:
     GitHub: https://github.com/cuijier || github
 

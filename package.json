@@ -14,5 +14,8 @@
     "hexo-renderer-marked": "7.0.1",
     "hexo-renderer-stylus": "3.0.1",
     "hexo-cli": "4.3.2"
+  },
+  "hexo": {
+    "version": "7.3.0"
   }
 }

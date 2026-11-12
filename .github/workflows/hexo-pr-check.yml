@@ -50,4 +50,5 @@ jobs:
           test -f public/css/main.css
           test -f public/admin/index.html
           test -f public/admin/config.yml
-          grep -q 'turbo-github' public/admin/config.yml
+          grep -q 'name: turbo-github' public/admin/config.yml
+          grep -q 'REPLACE_WITH_DECAP_TURBO_SITE_ID' public/admin/config.yml

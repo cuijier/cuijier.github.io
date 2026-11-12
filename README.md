@@ -37,4 +37,4 @@ Pages CMS configuration is in `.pages.yml`. Sign in at https://app.pagescms.org/
 
 ## Publishing
 
-The workflow currently validates the build only. It deliberately does not publish to GitHub Pages. Before switching the live site, compare the generated pages with the original site and confirm the GitHub Pages deployment source.
+The workflow builds and verifies the restored routes on pull requests. After this PR is merged to master, it builds again and deploys the generated `public/` directory to GitHub Pages. Before merging, set the repository Pages publishing source to **GitHub Actions** in Settings → Pages. The deployment job is gated behind a successful build.

@@ -6,7 +6,7 @@ keywords:
   - Liz
   - cuijier
 author: Liz
-language: zh-Hans
+language: zh-CN
 timezone: Asia/Shanghai
 
 url: https://cuijier.github.io
@@ -23,20 +23,24 @@ tag_generator:
 theme: next
 theme_config:
   scheme: Muse
+  darkmode: false
   menu:
-    home: / || home
-    tags: /tags/ || tags
-    categories: /categories/ || th
-    archives: /archives/ || archive
+    home: / || fa fa-home
+    tags: /tags/ || fa fa-tags
+    categories: /categories/ || fa fa-th
+    archives: /archives/ || fa fa-archive
+  menu_settings:
+    icons: true
+    badges: false
   sidebar:
     position: left
     display: post
-  motion:
-    enable: true
-  fancybox: true
-  avatar: /images/avatar.gif
+  avatar:
+    url: /images/avatar.gif
+    rounded: false
+    rotated: false
   social:
-    GitHub: https://github.com/cuijier || github
+    GitHub: https://github.com/cuijier || fab fa-github
 
 pretty_urls:
   trailing_index: true

@@ -41,9 +41,7 @@ jobs:
 
       - name: Build site
         run: |
-          ./node_modules/.bin/hexo version
-          ./node_modules/.bin/hexo clean
-          ./node_modules/.bin/hexo generate
+          npm run build
 
       - name: Verify legacy routes and assets
         run: |

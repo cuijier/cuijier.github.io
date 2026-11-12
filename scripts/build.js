@@ -8,7 +8,7 @@ async function main() {
   await hexo.init();
   await hexo.call("clean", {});
 
-  const postDir = path.resolve(process.cwd(), hexo.config.source_dir, "_posts");
+  const postDir = path.resolve(process.cwd(), hexo.config.source_dir, hexo.config.post_dir || "_posts");
   console.log("Site root:", process.cwd());
   console.log("Hexo source_dir:", hexo.config.source_dir);
   console.log("Resolved post directory:", postDir);

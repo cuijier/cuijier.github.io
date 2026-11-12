@@ -5,6 +5,7 @@ const hexo = new Hexo(process.cwd(), {});
 async function main() {
   await hexo.init();
   await hexo.call("clean", {});
+  await hexo.load();
   await hexo.call("generate", {});
   await hexo.exit();
 }
